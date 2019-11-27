@@ -229,5 +229,5 @@ class SearchView(ListView):
         context['obj_list'] = Post.objects.filter(Q(title__icontains=self.request.GET.get('q')) | Q(content__icontains=self.request.GET.get('q')))
         context['content'] = 'search'
         context['query'] = self.request.GET.get('q')
-        context['popular_posts'] = Post.objects.order_by('-updated_at')[:3]
+        # context['popular_posts'] = Post.objects.order_by('-updated_at')[:3]
         return context

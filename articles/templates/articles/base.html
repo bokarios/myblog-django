@@ -5,10 +5,10 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-		<link rel="stylesheet" href="{% static 'css/css/all.css' %}">
-		<link rel="stylesheet" href="{% static 'css/style.css' %}">
-		<link rel="icon" type="image/ico" href="/media/favicon.ico">
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/css/all.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<link rel="icon" type="image/ico" href="/media/favicon.ico" />
 		<title>
 			MyBlog
 		</title>
@@ -18,33 +18,37 @@
 		<div class="container my-5">
 			<div class="row">
 				<div class="col-lg-8">
-					{% if messages %}
-						{% for message in messages %}
-							<div class="alert alert-{{ message.tags }}">
-								{{message}}
-							</div>
-						{% endfor %}
-					{% endif %}
-
-					{% block content %}{% endblock content %}
+					{% if messages %} {% for message in messages %}
+					<div class="alert alert-{{ message.tags }}">
+						{{message}}
+					</div>
+					{% endfor %} {% endif %} {% block content %}{% endblock content %}
 				</div>
 				<div class="col-lg-4">
 					<ul class="list-group">
 						<li class="list-group-item list-group-item-light">
-							<a href="#" class="text-info link"><i class="fa fa-clock"></i> Latest Articles</a>
+							<a href="#" class="text-info link"
+								><i class="fa fa-clock"></i> Latest Articles</a
+							>
 						</li>
 						<li class="list-group-item list-group-item-light">
-							<a href="#" class="text-info link"><i class="fa fa-microphone"></i> Announcements</a>
+							<a href="#" class="text-info link"
+								><i class="fa fa-microphone"></i> Announcements</a
+							>
 						</li>
 						<li class="list-group-item list-group-item-light">
-							<a href="#" class="text-info link"><i class="fa fa-calendar"></i> Calendars</a>
+							<a href="#" class="text-info link"
+								><i class="fa fa-calendar"></i> Calendars</a
+							>
 						</li>
 						<li class="list-group-item list-group-item-light">
-							<a href="#" class="text-info link"><i class="fa fa-users"></i> Partners</a>
+							<a href="#" class="text-info link"
+								><i class="fa fa-users"></i> Partners</a
+							>
 						</li>
 					</ul>
-					{% if popular_posts %}
-						{% for post in popular_posts %}
+					<!-- {% if popular_posts %} -->
+					<!-- {% for post in popular_posts %}
 							<div class="card shadow-lg">
 								<div class="card-header border-bottom-0">
 									<h6 class="text-muted">
@@ -92,7 +96,7 @@
 								</div>
 							</div>
 						{% endfor %}
-					{% endif %}
+					{% endif %} -->
 				</div>
 			</div>
 		</div>
