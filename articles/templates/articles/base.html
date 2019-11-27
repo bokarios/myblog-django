@@ -47,56 +47,6 @@
 							>
 						</li>
 					</ul>
-					<!-- {% if popular_posts %} -->
-					<!-- {% for post in popular_posts %}
-							<div class="card shadow-lg">
-								<div class="card-header border-bottom-0">
-									<h6 class="text-muted">
-										<a href="/article/{{ post.pk }}-{{ post.slug }}" class="link">
-											<i class="fa fa-star text-warning">-</i> {{ post.title }}</h6>
-										</a>
-									<small class="text-gray float-left">
-										By <a href="/article/{{ post.user.username }}" class="link text-info">{{ post.user.username }}</a>
-									</small>
-									<small class="text-gray float-right">
-										Last update {{post.updated_at | date:'M d, Y'}}
-									</small>
-								</div>
-								<div class="card-body">
-									{% if post.image.url == '/media/default.png' %}
-										<img src="/media/post_pics/header.jpeg" width="95%" class="mx-auto d-flex mb-3" alt="Post picture">
-									{% else %}
-										<img src="{{ post.image.url }}" width="95%" class="mx-auto d-flex mb-3" alt="Post picture">
-									{% endif %}
-									<div class="justify-text pre-line">
-										{{ post.content | safe }}
-									</div>
-									<a href="/article/{{ post.pk }}-{{ post.slug }}" class="link">See more...</a>
-									<div class="card-footer">
-										<div class="row">
-											{% load hitcount_tags %}
-											<div class="col-lg-3 text-center px-0">
-												<h6 class="text-gray">
-													<i class="fa fa-thumbs-up">  {{ post.likes.count }}</i>
-												</h6>
-											</div>
-											<div class="col-lg-3 text-center px-0">
-												<h6 class="text-gray">
-													<i class="fa fa-thumbs-down">  {{post.dislikes.count}}</i>
-												</h6>
-											</div>
-											<div class="col-lg-3 text-center px-0">
-												<h6 class="text-gray"><i class="fa fa-comment">  {{ post.comments.count }}</i></h6>
-											</div>
-											<div class="col-lg-3 text-center px-0">
-												<h6 class="text-gray"><i class="fa fa-eye"> {% get_hit_count for post %}</i></h6>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						{% endfor %}
-					{% endif %} -->
 				</div>
 			</div>
 		</div>
