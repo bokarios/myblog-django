@@ -25,7 +25,7 @@ SECRET_KEY = '9ggfq_9vnlvb7cr1@p3&t1g1cmrypolvar1=@=!a@*mnls3cpr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sato-blog.herokuapp.com']
+ALLOWED_HOSTS = ['sato-blog.herokuapp.com','localhost']
 
 
 # Application definition
