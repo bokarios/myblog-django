@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/css/all.css' %}">
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+		<link rel="icon" type="image/ico" href="/media/favicon.ico">
+		<title>
+			MyBlog
+		</title>
+	</head>
+	<body>
+		{% block navbar %}{% include 'articles/navbar.html' %}{% endblock %}
+		<div class="container my-5">
+			<div class="row">
+				<div class="col-lg-8">
+					{% if messages %}
+						{% for message in messages %}
+							<div class="alert alert-{{ message.tags }}">
+								{{message}}
+							</div>
+						{% endfor %}
+					{% endif %}
+
+					{% block content %}{% endblock content %}
+				</div>
+				<div class="col-lg-4">
+					<ul class="list-group">
+						<li class="list-group-item list-group-item-light">
+							<a href="#" class="text-info link"><i class="fa fa-clock"></i> Latest Articles</a>
+						</li>
+						<li class="list-group-item list-group-item-light">
+							<a href="#" class="text-info link"><i class="fa fa-microphone"></i> Announcements</a>
+						</li>
+						<li class="list-group-item list-group-item-light">
+							<a href="#" class="text-info link"><i class="fa fa-calendar"></i> Calendars</a>
+						</li>
+						<li class="list-group-item list-group-item-light">
+							<a href="#" class="text-info link"><i class="fa fa-users"></i> Partners</a>
+						</li>
+					</ul>
+					{% if popular_posts %}
+						{% for post in popular_posts %}
+							<div class="card shadow-lg">
+								<div class="card-header border-bottom-0">
+									<h6 class="text-muted">
+										<a href="/article/{{ post.pk }}-{{ post.slug }}" class="link">
+											<i class="fa fa-star text-warning">-</i> {{ post.title }}</h6>
+										</a>
+									<small class="text-gray float-left">
+										By <a href="/article/{{ post.user.username }}" class="link text-info">{{ post.user.username }}</a>
+									</small>
+									<small class="text-gray float-right">
+										Last update {{post.updated_at | date:'M d, Y'}}
+									</small>
+								</div>
+								<div class="card-body">
+									{% if post.image.url == '/media/default.png' %}
+										<img src="/media/post_pics/header.jpeg" width="95%" class="mx-auto d-flex mb-3" alt="Post picture">
+									{% else %}
+										<img src="{{ post.image.url }}" width="95%" class="mx-auto d-flex mb-3" alt="Post picture">
+									{% endif %}
+									<div class="justify-text pre-line">
+										{{ post.content | safe }}
+									</div>
+									<a href="/article/{{ post.pk }}-{{ post.slug }}" class="link">See more...</a>
+									<div class="card-footer">
+										<div class="row">
+											{% load hitcount_tags %}
+											<div class="col-lg-3 text-center px-0">
+												<h6 class="text-gray">
+													<i class="fa fa-thumbs-up">  {{ post.likes.count }}</i>
+												</h6>
+											</div>
+											<div class="col-lg-3 text-center px-0">
+												<h6 class="text-gray">
+													<i class="fa fa-thumbs-down">  {{post.dislikes.count}}</i>
+												</h6>
+											</div>
+											<div class="col-lg-3 text-center px-0">
+												<h6 class="text-gray"><i class="fa fa-comment">  {{ post.comments.count }}</i></h6>
+											</div>
+											<div class="col-lg-3 text-center px-0">
+												<h6 class="text-gray"><i class="fa fa-eye"> {% get_hit_count for post %}</i></h6>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/compiled.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/custom.js' %}"></script>
+	</body>
+</html>

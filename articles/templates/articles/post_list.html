@@ -1,0 +1,119 @@
+{% extends 'articles/base.html' %}
+{% load hitcount_tags %}
+
+{% block content %}
+    <div class="row mb-5">
+        {% if content == 'search' %}
+            <div class="col-12">
+                {% if object_list.count == 0 %}
+                    <i class="fa fa-frown fa-4x text-center text-gray justify-content-center d-flex mb-5"></i>
+                    <h4 class="text-gray text-center">
+                        No results found to match your search for "{{query}}" try another word.
+                    </h4>
+                {% else %}
+                    <h5 class="text-gray mb-2">
+                        <i>Results found ({{obj_list.count}}) {% if object_list.count < 2 %} article {% else %} articles {% endif %}.</i>
+                    </h5>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% for post in object_list %}
+            <div class="col-12">
+                <div class="card shadow-lg">
+                    <div class="card-header border-bottom-0">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3 style="font-size:22pt">
+                                    <a href="/article/{{post.pk}}-{{post.slug}}" class="link title2 font-oblique">{{post.title}}</a>
+                                </h3>
+                            </div>
+                            <div class="col-md-4 align-self-end">
+                                <h6 class="text-gray text-right" style="font-size:10pt">
+                                    {{ post.updated_at | date:'F d, Y' }}
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mt-2">
+                                <h5 class="text-gray" style="font-size:13pt">
+                                    Created by <a href="/user/{{ post.user.username }}" class="text-info text-cap" style="text-decoration:none">{{ post.user.username }}</a>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" id="article-{{ post.id }}-rdr">
+                        <div class="row mb-4">
+                            <div class="col-12 text-center">
+                                {% if post.image.url == '/media/default.png' %}
+                                <img src="/media/post_pics/default.png" alt="article pic" class="radius" width="95%">
+                                {% else %}
+                                <img src="{{ post.image.url }}" alt="article pic" class="radius" width="95%">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="justify-text pre-line">
+                                    <p>{{ post.content | safe }}</p>
+                                </div>
+                                <a href="/article/{{post.pk}}-{{post.slug}}" class="link text-info">See more...</a>
+                            </div>
+                        </div>
+                        <div class="row border-top pt-3">
+                            <div class="col-md-3">
+                                {% if user.is_authenticated %}
+                                <button class="btn btn-outline-info" name="like-btn" type="button" data-id="{{ post.id }}" data-rdr="article-{{ post.id }}-rdr">
+                                    <i class="fa fa-thumbs-up"></i>
+                                </button>
+                                <button class="btn btn-outline-secondary" name="dislike-btn" type="button" data-id="{{ post.id }}" data-rdr="article-{{ post.id }}-rdr">
+                                    <i class="fa fa-thumbs-down"></i>
+                                </button>
+                                <input type="hidden" id="user-id" value="{{ user.id }}">
+                                <input type="hidden" id="article-id" value="{{ post.id }}">
+                                {% csrf_token %}
+                                {% else %}
+                                    <button class="btn btn-outline-secondary text-gray" type="button" title="Not autherized action" disabled>
+                                        <i class="fa fa-thumbs-up"></i>
+                                    </button>
+                                    <button class="btn btn-outline-secondary text-gray" type="button"title="Not autherized action" disabled>
+                                        <i class="fa fa-thumbs-down"></i>
+                                    </button>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-3 text-center align-self-center">
+                                <span class="text-gray">{{ post.likes.count }} <i class="fa fa-thumbs-up mr-2"></i></span> <span class="text-gray">{{post.dislikes.count}} <i class="fa fa-thumbs-down"></i></span>
+                            </div>
+                            <div class="col-md-3 text-center align-self-end">
+                                <h6 class="text-gray"><i class="fa fa-comment"></i> {{ post.comments.count }} Comment</h6>
+                            </div>
+                            <div class="col-md-3 text-center align-self-end">
+                                <h6 class="text-gray"><i class="fa fa-eye"></i> {% get_hit_count for post %} Views</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% if is_paginated %}
+            <div class="col-12 mt-5">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="btn btn-outline-info mb-4">First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info mb-4">Previous</a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a href="?page={{ num }}" class="btn btn-info mb-4">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a href="?page={{ num }}" class="btn btn-outline-info mb-4">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-4">Next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-4">Last</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

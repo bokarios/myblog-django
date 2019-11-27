@@ -1,0 +1,95 @@
+body {
+    font-family: serif;
+}
+
+.text-cap {
+    text-transform: capitalize !important;
+}
+
+.radius {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0 !important;
+}
+
+.err > ul > li {
+    list-style: none !important;
+}
+
+.errorlist {
+
+}
+
+ul.errorlist {
+    list-style: none !important;
+    font-style: italic;
+    padding-left: 0;
+}
+
+.rounded-form input.form-control {
+    border-radius: 0 20px 20px 0;
+}
+
+.profile-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
+
+.custom-shadow {
+    box-shadow: 0px 6px 5px -6px #777;
+}
+
+a.link {
+    text-decoration: none !important;
+}
+
+div.pre-line {
+    max-height: 90px;
+    overflow-y: hidden;
+}
+.comment {
+    background-color: #f1efef;
+    border-radius: 30px;
+}
+
+.comment-box {
+    max-height: 60px;
+    border-radius: 30px;
+    padding: 15px;
+    outline: none !important;
+}
+
+.text-gray {
+    color: #a5a2a2 !important;
+}
+
+.justify-text > p {
+    text-align: justify !important;
+}
+
+.django-ckeditor-widget {
+    display: flex !important;
+}
+
+.font-oblique {
+    font-style: oblique !important;
+}
+
+.title1 {
+    color: #a9a187 !important;
+}
+
+.title2 {
+    color: #8099b3 !important;
+}
+
+.bg-unq1 {
+    background-color: #a9a187 !important;
+}

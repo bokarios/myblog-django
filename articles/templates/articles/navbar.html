@@ -1,0 +1,58 @@
+{% block navbar %}
+    <div class="container-fluid px-0">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark px-sm-2 px-md-5">
+            <a href="/" class="navbar-brand btn" style="background-color: #161617; border-radius: 50%">
+                <span class="text-info">My</span><span class="text-primary">Blog</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynavbar" aria-controls="mynavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="/article/new" class="nav-link">New Article</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="/users/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/logout" class="nav-link">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="/users/login" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/register" class="nav-link">Register</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <form class="form-inline my-2 mr-md-2 ml-md-5 my-lg-0" action="/search">
+                    <div class="form-group">
+                        <label class="sr-only">search</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text border-right-0 bg-white">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                            </div>
+                            <input type="search" class="form-control mr-sm:search" name="q" placeholder="Search" aria-label="search" autocomplete="on">
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-light my-2 my-sm-0 ml-lg-2" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+{% endblock %}

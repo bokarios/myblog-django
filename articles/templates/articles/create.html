@@ -1,0 +1,20 @@
+{% extends 'articles/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-5 mx-auto">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h4 class="text-center text-primary mb-5">Create Article</h4>
+                {{ form|crispy }}
+                <div class="form-group text-center mt-4 mb-4">
+                    <button type="submit" class="btn btn-primary btn-block mb-1" style="border-radius: 20px;height: 40px;padding: 1px">
+                        Create
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

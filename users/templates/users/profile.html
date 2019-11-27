@@ -1,0 +1,16 @@
+{% extends 'articles/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="profile-container">
+            <div class="mb-2">
+                {% if user.profile.image.url == '/media/default.png' %}
+                    <img src="/media/profile_pics/default.png" alt="profile picture" class="profile-img">
+                {% else %}
+                    <img src="{{ user.profile.image.url }}" alt="profile picture" class="profile-img">
+                {% endif %}
+            </div>
+            <h4 class="text-secondary">{{user.first_name}} {{user.last_name}}</h4>
+        </div>
+    </div>
+{% endblock content %}
