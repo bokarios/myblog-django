@@ -4,125 +4,141 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-sm-12 col-md-8 col-lg-9 mx-auto card custom-shadow">
-            <div class="card-body">
-                <form class="rounded-form" method="POST">
-                    {% csrf_token %}
-                    <h4 class="text-center text-dark mb-5">Signup today & join bloggers</h4>
-                    <div class="form-group">
-                        <label class="sr-only">username</label>
-                        <div class="input-group mb-2 mr-sm-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text" style="border-radius: 20px 0 0 20px;height: 38px"></div>
+        <div class="col-sm-12 col-md-8 col-lg-9 mx-auto">
+            <div class="card shadow-lg">
+                <div class="card-header border-bottom-0">
+                    <h4 class="text-center title2 font-oblique">Signup today & join bloggers</h4>
+                </div>
+                <div class="card-body px-lg-5">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label class="sr-only">username</label>
+                            <div class="input-group mb-2 mr-sm-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user title2"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="username">
                             </div>
-                            <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="username">
+                            <small class="form-text text-left text-secondary ml-3">
+                                {% if form.errors.username %}
+                                    <span class="text-danger">{{form.errors.username}}</span>
+                                {% else %}
+                                    <i>Must 150 character or less.</i>
+                                {% endif %}
+                            </small>
                         </div>
-                        <small class="form-text text-left text-secondary ml-3">
-                            {% if form.errors.username %}
-                                <span class="text-danger">{{form.errors.username}}</span>
-                            {% else %}
-                                <i>Must 150 character or less.</i>
-                            {% endif %}
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only">first name</label>
-                        <div class="input-group mb-2 mr-sm-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text" style="border-radius: 20px 0 0 20px;height: 38px"></div>
+                        <div class="form-group">
+                            <label class="sr-only">first name</label>
+                            <div class="input-group mb-2 mr-sm-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <div class="fa fa-user title2"></div>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" name="first_name" placeholder="First name" autocomplete="username">
                             </div>
-                            <input type="text" class="form-control" name="first_name" placeholder="First name" autocomplete="username">
+                            <small class="form-text text-left text-secondary ml-3">
+                                {% if form.errors.first_name %}
+                                    <span class="text-danger">{{form.errors.first_name}}</span>
+                                {% else %}
+                                    <i>Must 30 character or less.</i>
+                                {% endif %}
+                            </small>
                         </div>
-                        <small class="form-text text-left text-secondary ml-3">
-                            {% if form.errors.first_name %}
-                                <span class="text-danger">{{form.errors.first_name}}</span>
-                            {% else %}
-                                <i>Must 30 character or less.</i>
-                            {% endif %}
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only">last name</label>
-                        <div class="input-group mb-2 mr-sm-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text" style="border-radius: 20px 0 0 20px;height: 38px"></div>
+                        <div class="form-group">
+                            <label class="sr-only">last name</label>
+                            <div class="input-group mb-2 mr-sm-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <div class="fa fa-user title2"></div>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" name="last_name" placeholder="Last name" autocomplete="username">
                             </div>
-                            <input type="text" class="form-control" name="last_name" placeholder="Last name" autocomplete="username">
+                            <small class="form-text text-left text-secondary ml-3">
+                                {% if form.errors.last_name %}
+                                    <span class="text-danger">{{form.errors.last_name}}</span>
+                                {% else %}
+                                    <i>Must 30 character or less.</i>
+                                {% endif %}
+                            </small>
                         </div>
-                        <small class="form-text text-left text-secondary ml-3">
-                            {% if form.errors.last_name %}
-                                <span class="text-danger">{{form.errors.last_name}}</span>
-                            {% else %}
-                                <i>Must 30 character or less.</i>
-                            {% endif %}
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only">email</label>
-                        <div class="input-group mb-2 mr-sm-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text" style="border-radius: 20px 0 0 20px;height: 38px"></div>
+                        <div class="form-group">
+                            <label class="sr-only">email</label>
+                            <div class="input-group mb-2 mr-sm-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <div class="fa fa-envelope title2"></div>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" name="email" id="id_email" placeholder="Email address" autocomplete="email">
                             </div>
-                            <input type="text" class="form-control" name="email" id="id_email" placeholder="Email address" autocomplete="email">
+                            <small class="form-text text-left text-secondary ml-3">
+                                {% if form.errors.email %}
+                                    <span class="text-danger">{{form.errors.email}}</span>
+                                {% else %}
+                                    <i>Must be a valid email address.</i>
+                                {% endif %}
+                            </small>
                         </div>
-                        <small class="form-text text-left text-secondary ml-3">
-                            {% if form.errors.email %}
-                                <span class="text-danger">{{form.errors.email}}</span>
-                            {% else %}
-                                <i>Must be a valid email address.</i>
-                            {% endif %}
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only">
-                            password
-                        </label>
-                        <div class="input-group mb-2 mr-sm-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text" style="border-radius: 20px 0 0 20px;height: 38px"></div>
+                        <div class="form-group">
+                            <label class="sr-only">
+                                password
+                            </label>
+                            <div class="input-group mb-2 mr-sm-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <div class="fa fa-lock title2"></div>
+                                    </div>
+                                </div>
+                                <input type="password" class="form-control" name="password1" placeholder="Password" autocomplete="new-password">
                             </div>
-                            <input type="password" class="form-control" name="password1" placeholder="Password" autocomplete="new-password">
+                            <small class="form-text text-left text-secondary ml-3">
+                                {% if form.errors.password1 %}
+                                    <span class="text-danger">{{form.errors.password1}}</span>
+                                {% else %}
+                                    <i>Try to make it as strong as possible.</i>
+                                {% endif %}
+                            </small>
                         </div>
-                        <small class="form-text text-left text-secondary ml-3">
-                            {% if form.errors.password1 %}
-                                <span class="text-danger">{{form.errors.password1}}</span>
-                            {% else %}
-                                <i>Try to make it as strong as possible.</i>
-                            {% endif %}
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only">
-                            password2
-                        </label>
-                        <div class="input-group mb-2 mr-sm-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text" style="border-radius: 20px 0 0 20px;height: 38px"></div>
+                        <div class="form-group">
+                            <label class="sr-only">
+                                password2
+                            </label>
+                            <div class="input-group mb-2 mr-sm-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <div class="fa fa-lock title2"></div>
+                                    </div>
+                                </div>
+                                <input type="password" class="form-control" name="password2" placeholder="Password confirm" autocomplete="new-password">
                             </div>
-                            <input type="password" class="form-control" name="password2" placeholder="Password confirm" autocomplete="new-password">
+                            <small class="form-text text-left text-secondary ml-3">
+                                {% if form.errors.password2 %}
+                                    <span class="text-danger">{{form.errors.password2}}</span>
+                                {% else %}
+                                    <i>must be match to the password.</i>
+                                {% endif %}
+                            </small>
                         </div>
-                        <small class="form-text text-left text-secondary ml-3">
-                            {% if form.errors.password2 %}
-                                <span class="text-danger">{{form.errors.password2}}</span>
-                            {% else %}
-                                <i>must be match to the password.</i>
-                            {% endif %}
-                        </small>
+                        <div class="form-group text-center mt-4">
+                            <button type="submit" class="btn btn-dark w-50">
+                                Register
+                            </button>
+                        </div>
+                    </form>
+                    <div class="col-12 text-left">
+                        <p class="text-secondary">
+                            Already have account?
+                            <a href="/users/login" class="text-cstm-secondary" style="text-decoration: none">
+                                Sign in
+                            </a>
+                        </p>
                     </div>
-                    <div class="form-group text-center mt-4 mb-4">
-                        <button type="submit" class="btn btn-primary btn-block mb-1" style="border-radius: 20px;height: 40px;padding: 1px">
-                            Register
-                        </button>
-                    </div>
-                </form>
-                <hr class="mt-5 mb-3 bg-light">
-                <div class="col-12 text-left">
-                    <p class="text-secondary">
-                        Already have account?
-                        <a href="/users/login" class="text-cstm-secondary" style="text-decoration: none">
-                            Sign in
-                        </a>
-                    </p>
                 </div>
             </div>
         </div>

@@ -19,8 +19,8 @@
         {% endif %}
         {% for post in object_list %}
             <div class="col-12">
-                <div class="card shadow-lg">
-                    <div class="card-header border-bottom-0">
+                <div class="card shadow-sm bg-white border-ligh mb-1">
+                    <div class="card-header border-light bg-white border-bottom-0">
                         <div class="row">
                             <div class="col-md-8">
                                 <h3 style="font-size:22pt">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="row border-top pt-3">
-                            <div class="col-md-3">
+                            <div class="col-6 col-sm-3 col-md-3 text-center mb-3 mb-sm-0">
                                 {% if user.is_authenticated %}
                                 <button class="btn btn-outline-info" name="like-btn" type="button" data-id="{{ post.id }}" data-rdr="article-{{ post.id }}-rdr">
                                     <i class="fa fa-thumbs-up"></i>
@@ -80,14 +80,14 @@
                                     </button>
                                 {% endif %}
                             </div>
-                            <div class="col-md-3 text-center align-self-center">
+                            <div class="col-6 col-sm-3 col-md-3 text-center mb-3 mb-sm-0 align-self-center">
                                 <span class="text-gray">{{ post.likes.count }} <i class="fa fa-thumbs-up mr-2"></i></span> <span class="text-gray">{{post.dislikes.count}} <i class="fa fa-thumbs-down"></i></span>
                             </div>
-                            <div class="col-md-3 text-center align-self-end">
-                                <h6 class="text-gray"><i class="fa fa-comment"></i> {{ post.comments.count }} Comment</h6>
+                            <div class="col-6 col-sm-3 col-md-3 text-center align-self-end">
+                                <h6 class="text-gray"><i class="fa fa-comment"></i> {{ post.comments.count }}</h6>
                             </div>
-                            <div class="col-md-3 text-center align-self-end">
-                                <h6 class="text-gray"><i class="fa fa-eye"></i> {% get_hit_count for post %} Views</h6>
+                            <div class="col-6 col-sm-3 col-md-3 text-center align-self-end">
+                                <h6 class="text-gray"><i class="fa fa-eye"></i> {% get_hit_count for post %}</h6>
                             </div>
                         </div>
                     </div>
