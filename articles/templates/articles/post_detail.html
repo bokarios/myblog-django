@@ -47,7 +47,7 @@
         {% endif %}
         <div class="col-12 py-3 border-bottom" id="article-{{ object.id }}-rdr">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-3 col-md-3">
                     {% if user.is_authenticated %}
                     <button class="btn btn-outline-info" name="like-btn" type="button" data-id="{{ object.id }}" data-rdr="article-{{ object.id }}-rdr">
                         <i class="fa fa-thumbs-up"></i>
@@ -67,14 +67,14 @@
                         </button>
                     {% endif %}
                 </div>
-                <div class="col-md-3 text-center align-self-end">
+                <div class="col-3 col-md-3 text-center align-self-end">
                     <h6 class="text-muted">{{object.likes.count}} <i class="fa fa-thumbs-up mr-3"></i> {{object.dislikes.count}} <i class="fa fa-thumbs-down"></i></h6>
                 </div>
-                <div class="col-md-3 text-center align-self-end">
-                    <h6 class="text-muted"><i class="fa fa-comment"></i> {{object.comments.count}} {% if object.comments.count == 1 %}Comment{% else %} Comments{% endif %}</h6>
+                <div class="col-3 col-md-3 text-center align-self-end">
+                    <h6 class="text-muted"><i class="fa fa-comment"></i> {{object.comments.count}}</h6>
                 </div>
-                <div class="col-md-3 text-center align-self-end">
-                    <h6 class="text-muted"><i class="fa fa-eye"></i> {% get_hit_count for object %} Views</h6>
+                <div class="col-3 col-md-3 text-center align-self-end">
+                    <h6 class="text-muted"><i class="fa fa-eye"></i> {% get_hit_count for object %}</h6>
                 </div>
             </div>
         </div>
@@ -82,13 +82,13 @@
     {% if user.is_authenticated %}
         <div id="comment-feedback"></div>
         <div class="row mb-3">
-            <div class="col-lg-2">
+            <div class="col-2 col-lg-2">
                 <img src="/media/profile_pics/default.png" alt="Profile picture" width="100%">
             </div>
-            <div class="col-lg-8">
+            <div class="col-8 col-lg-8">
                 <textarea id="user-comment" class="form-control comment-box mt-3" placeholder="Write a comment..."></textarea>
             </div>
-            <div class="col-lg-2">
+            <div class="col-2 col-lg-2">
                 <button id="comment-btn" type="button" class="btn btn-outline-secondary mt-4">Post</button>
                 <input type="hidden" id="user-id" value="{{ user.id }}">
                 <input type="hidden" id="article-id" value="{{ object.id }}">
@@ -98,13 +98,13 @@
     {% endif %}
     <div class="row">
         <div class="col-12">
-            {% if comments.count == 0 %}
+            {% if object.comments.count == 0 %}
                 <div class="card card-body comment mb-3">
                     <i class="fa fa-comment-slash text-muted fa-3x text-center"></i>
                     <h6 class="text-muted text-center">No comments</h6>
                 </div>
             {% else %}
-                {% for comment in comments %}
+                {% for comment in object.comments.all %}
                 <div class="card card-body comment mb-3">
                     <h4 class="text-dark">{{ comment.user.username }}</h4>
                     <h6 class="text-muted" style="font-size: 10pt">{{ comment.created_at | date:'F d, Y' }}</h6>
